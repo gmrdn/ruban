@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a1afb9-4ca6-4a8d-9517-f23fe3608c0a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ruban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ruban.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,32 +123,50 @@
       <option name="presentableId" value="Default" />
       <updated>1594021562185</updated>
     </task>
+    <task id="LOCAL-00001" summary="Read the task arg and print it (with tests)">
+      <created>1594068196366</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594068196366</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Read the task arg and print it (with tests)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Read the task arg and print it (with tests)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="100" y="123" width="1240" height="631" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1594066992106">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
     <state x="100" y="123" width="1240" height="631" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.831@0.23.1440.831" timestamp="1594066992106" />
-    <state width="1398" height="173" key="GridCell.Tab.0.bottom" timestamp="1594068009614">
+    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594068196171">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594068009614" />
-    <state width="1398" height="173" key="GridCell.Tab.0.center" timestamp="1594068009613">
+    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594068196171" />
+    <state width="1398" height="173" key="GridCell.Tab.0.bottom" timestamp="1594068732115">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594068009613" />
-    <state width="1398" height="173" key="GridCell.Tab.0.left" timestamp="1594068009613">
+    <state width="1398" height="173" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594068732115" />
+    <state width="1398" height="173" key="GridCell.Tab.0.center" timestamp="1594068732113">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594068009613" />
-    <state width="1398" height="173" key="GridCell.Tab.0.right" timestamp="1594068009614">
+    <state width="1398" height="173" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594068732113" />
+    <state width="1398" height="173" key="GridCell.Tab.0.left" timestamp="1594068732113">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594068009614" />
+    <state width="1398" height="173" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594068732113" />
+    <state width="1398" height="173" key="GridCell.Tab.0.right" timestamp="1594068732114">
+      <screen x="0" y="23" width="1440" height="831" />
+    </state>
+    <state width="1398" height="173" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594068732114" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594068199162">
+      <screen x="0" y="23" width="1440" height="831" />
+    </state>
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594068199162" />
     <state x="385" y="199" width="670" height="675" key="run.anything.popup" timestamp="1594066665749">
       <screen x="0" y="23" width="1440" height="831" />
     </state>

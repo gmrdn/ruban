@@ -12,12 +12,18 @@ fn main() {
     confirm_the_task(args.task, &mut std::io::stdout());
 }
 
-fn greet_the_user(mut writer: impl std::io::Write) {
-    writeln!(writer, "Hello, Ruban User.");
+fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
+    match writeln!(writer, "Hello, Ruban User.") {
+        Ok(content) => Ok(()),
+        Err(error) => { return Err(error.into()); }
+    }
 }
 
-fn confirm_the_task(task: String, mut writer: impl std::io::Write) {
-    writeln!(writer, "{}", task);
+fn confirm_the_task(task: String, mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
+    match writeln!(writer, "{}", task) {
+        Ok(content) => Ok(()),
+        Err(error) => { return Err(error.into()); }
+    }
 }
 
 #[test]
