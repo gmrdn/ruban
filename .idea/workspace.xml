@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="24a1afb9-4ca6-4a8d-9517-f23fe3608c0a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/cli.rs" afterDir="false" />
     </list>
@@ -44,6 +46,7 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="cargo run" />
+      <command value="cargo fmt" />
       <command value="cargo test" />
     </option>
   </component>
@@ -59,6 +62,18 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fmt" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="fmt" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
     <configuration name="run" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
@@ -113,11 +128,15 @@
     <list>
       <item itemvalue="Cargo Command.run" />
       <item itemvalue="Cargo Command.test" />
+      <item itemvalue="Cargo Command.fmt" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Cargo Command.test" />
-        <item itemvalue="Cargo Command.run" />
+        <item itemvalue="Cargo Command.fmt" />
+        <item itemvalue="Cargo Command.test" />
+        <item itemvalue="Cargo Command.fmt" />
+        <item itemvalue="Cargo Command.test" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594069709956</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added tags in the cli struct">
+      <created>1594199606600</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1594199606600</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -165,7 +191,8 @@
     <MESSAGE value="Read the task arg and print it (with tests)" />
     <MESSAGE value="Error handling" />
     <MESSAGE value="Added an integration test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an integration test" />
+    <MESSAGE value="Added tags in the cli struct" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tags in the cli struct" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="100" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594197634386">
@@ -176,33 +203,37 @@
       <screen x="0" y="23" width="1440" height="831" />
     </state>
     <state x="100" y="123" width="1240" height="631" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.831@0.23.1440.831" timestamp="1594066992106" />
-    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594069709792">
+    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594199606366">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594069709792" />
-    <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1594198872934">
+    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594199606366" />
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1594242953789">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594198872934" />
-    <state width="1398" height="294" key="GridCell.Tab.0.center" timestamp="1594198872933">
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594242953789" />
+    <state width="1398" height="294" key="GridCell.Tab.0.center" timestamp="1594242953788">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594198872933" />
-    <state width="1398" height="294" key="GridCell.Tab.0.left" timestamp="1594198872932">
+    <state width="1398" height="294" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594242953788" />
+    <state width="1398" height="294" key="GridCell.Tab.0.left" timestamp="1594242953787">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594198872932" />
-    <state width="1398" height="294" key="GridCell.Tab.0.right" timestamp="1594198872933">
+    <state width="1398" height="294" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594242953787" />
+    <state width="1398" height="294" key="GridCell.Tab.0.right" timestamp="1594242953789">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594198872933" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594069711670">
+    <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594242953789" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594201928452">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594069711670" />
-    <state x="385" y="199" width="670" height="675" key="run.anything.popup" timestamp="1594066665749">
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594201928452" />
+    <state x="534" y="270" key="export.test.results" timestamp="1594238047273">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="385" y="199" width="670" height="675" key="run.anything.popup/0.23.1440.831@0.23.1440.831" timestamp="1594066665749" />
+    <state x="534" y="270" key="export.test.results/0.23.1440.831@0.23.1440.831" timestamp="1594238047273" />
+    <state x="385" y="199" width="670" height="675" key="run.anything.popup" timestamp="1594239314835">
+      <screen x="0" y="23" width="1440" height="831" />
+    </state>
+    <state x="385" y="199" width="670" height="675" key="run.anything.popup/0.23.1440.831@0.23.1440.831" timestamp="1594239314835" />
   </component>
 </project>
