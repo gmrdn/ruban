@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a1afb9-4ca6-4a8d-9517-f23fe3608c0a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/cli.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ruban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ruban.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/cli.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +110,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Cargo Command.run" />
+      <item itemvalue="Cargo Command.test" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Cargo Command.test" />
@@ -121,6 +123,7 @@
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -147,44 +150,56 @@
       <option name="project" value="LOCAL" />
       <updated>1594068889228</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added an integration test">
+      <created>1594069709956</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594069709956</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Read the task arg and print it (with tests)" />
     <MESSAGE value="Error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error handling" />
+    <MESSAGE value="Added an integration test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an integration test" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="100" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594197634386">
+      <screen x="0" y="23" width="1440" height="831" />
+    </state>
+    <state x="184" y="100" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.831@0.23.1440.831" timestamp="1594197634386" />
     <state x="100" y="123" width="1240" height="631" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1594066992106">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
     <state x="100" y="123" width="1240" height="631" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.831@0.23.1440.831" timestamp="1594066992106" />
-    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594068889070">
+    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594069709792">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594068889070" />
-    <state width="1398" height="173" key="GridCell.Tab.0.bottom" timestamp="1594069180526">
+    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594069709792" />
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1594198872934">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594069180526" />
-    <state width="1398" height="173" key="GridCell.Tab.0.center" timestamp="1594069180525">
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594198872934" />
+    <state width="1398" height="294" key="GridCell.Tab.0.center" timestamp="1594198872933">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594069180525" />
-    <state width="1398" height="173" key="GridCell.Tab.0.left" timestamp="1594069180524">
+    <state width="1398" height="294" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594198872933" />
+    <state width="1398" height="294" key="GridCell.Tab.0.left" timestamp="1594198872932">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594069180524" />
-    <state width="1398" height="173" key="GridCell.Tab.0.right" timestamp="1594069180526">
+    <state width="1398" height="294" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594198872932" />
+    <state width="1398" height="294" key="GridCell.Tab.0.right" timestamp="1594198872933">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="173" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594069180526" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594068891007">
+    <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594198872933" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594069711670">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594068891007" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594069711670" />
     <state x="385" y="199" width="670" height="675" key="run.anything.popup" timestamp="1594066665749">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
