@@ -1,5 +1,5 @@
 pub mod rendering {
-    use crate::Tasks;
+    use crate::{Status, Tasks};
 
     pub fn greet_the_user(
         mut writer: impl std::io::Write,
@@ -72,14 +72,14 @@ pub mod rendering {
                     tags: Some("House".to_string()),
                     task: "Repair the garage door.".to_string(),
                     creation_date: None,
-                    status: None,
+                    status: Status::ToDo,
                 },
                 Task {
                     number: 2,
                     tags: Some("Dev".to_string()),
                     task: "Finish the Rust Book.".to_string(),
                     creation_date: None,
-                    status: None,
+                    status: Status::ToDo,
                 },
             ],
         };
