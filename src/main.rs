@@ -1,6 +1,5 @@
-use chrono::{DateTime, Utc};
-use structopt::StructOpt;
 use std::str::from_utf8;
+use structopt::StructOpt;
 
 #[derive(StructOpt)]
 struct Cli {
@@ -52,53 +51,31 @@ fn main() {
 }
 
 fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
-    match writeln!(writer, "Hello, Ruban User.") {
-        Ok(content) => Ok(()),
-        Err(error) => {
-            return Err(error.into());
-        }
-    }
+    writeln!(writer, "Hello, Ruban User.")?;
+    Ok(())
 }
 
 fn confirm_the_task(
     task: String,
     mut writer: impl std::io::Write,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    match writeln!(writer, "New task: {}", task) {
-        Ok(content) => Ok(()),
-        Err(error) => {
-            return Err(error.into());
-        }
-    }
+    writeln!(writer, "New task: {}", task)?;
+    Ok(())
 }
 
 fn confirm_the_tags(
     tags: String,
     mut writer: impl std::io::Write,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    match writeln!(writer, "Tags: {}", tags) {
-        Ok(content) => Ok(()),
-        Err(error) => {
-            return Err(error.into());
-        }
-    }
+    writeln!(writer, "Tags: {}", tags)?;
+    Ok(())
 }
 
-fn render_all_tasks(
-    tasks: &Tasks,
-    mut writer: impl std::io::Write,
-) {
-
-
+fn render_all_tasks(tasks: &Tasks, mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
     for task in tasks {
-        writeln!(writer, "{} - {}", task.number, task.task);
+        writeln!(writer, "{} - {}", task.number, task.task)?;
     };
-    // match writeln!(writer, "Tasks: {:?}", tasks) {
-    //     Ok(content) => Ok(()),
-    //     Err(error) => {
-    //         return Err(error.into());
-    //     }
-    // }
+    Ok(())
 }
 
 #[test]
@@ -147,5 +124,8 @@ fn should_display_all_tasks() {
     let mut result = Vec::new();
 
     render_all_tasks(&tasks, &mut result);
-    assert_eq!(from_utf8(&result).unwrap(), "1 - Repair the garage door.\n2 - Finish the Rust Book.\n");
+    assert_eq!(
+        from_utf8(&result).unwrap(),
+        "1 - Repair the garage door.\n2 - Finish the Rust Book.\n"
+    );
 }
