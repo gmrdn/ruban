@@ -10,24 +10,24 @@ I also wanted to learn Rust, so this is a pet project to experiment with CLI in 
 
 ## How to use ?
 
-####Add a task:
+#### Add a task:
 
 `ruban add -t "House" "Repair the garage door"`
 
 The `-t` or `--tags` flag allows to add tags to a task so they can be sorted and classified. 
 Tags are optional.
 
-####Show all tasks:
+#### Show all tasks:
 
 `ruban ls`
 
 This command shows the list of all tasks
 
-####Remove a task:
+#### Remove a task:
 
 `ruban rm <number>`
 
-####Move a task from one status to another:
+#### Move a task from one status to another:
 
 `ruban mv <number> <status>`
 

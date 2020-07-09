@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a1afb9-4ca6-4a8d-9517-f23fe3608c0a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rendering.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/rendering.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/cli.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594286461144</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Documented functionalities in README.md">
+      <created>1594288704894</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1594288704894</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -223,7 +229,8 @@
     <MESSAGE value="Small refactoring" />
     <MESSAGE value="Added subcommands (Add, Ls, Rm, Mv)" />
     <MESSAGE value="Reorganized rendering in a separate module and added ls subcommand" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reorganized rendering in a separate module and added ls subcommand" />
+    <MESSAGE value="Documented functionalities in README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documented functionalities in README.md" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="100" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594197634386">
@@ -234,10 +241,10 @@
       <screen x="0" y="23" width="1440" height="831" />
     </state>
     <state x="100" y="123" width="1240" height="631" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.831@0.23.1440.831" timestamp="1594066992106" />
-    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594286460974">
+    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594288704722">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594286460974" />
+    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594288704722" />
     <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1594286820898">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
@@ -254,10 +261,10 @@
       <screen x="0" y="23" width="1440" height="831" />
     </state>
     <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594286820897" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594286463358">
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594288706950">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594286463358" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594288706950" />
     <state x="534" y="270" key="export.test.results" timestamp="1594238047273">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
@@ -266,5 +273,9 @@
       <screen x="0" y="23" width="1440" height="831" />
     </state>
     <state x="385" y="199" width="670" height="675" key="run.anything.popup/0.23.1440.831@0.23.1440.831" timestamp="1594285327129" />
+    <state x="385" y="178" width="670" height="676" key="search.everywhere.popup" timestamp="1594288760818">
+      <screen x="0" y="23" width="1440" height="831" />
+    </state>
+    <state x="385" y="178" width="670" height="676" key="search.everywhere.popup/0.23.1440.831@0.23.1440.831" timestamp="1594288760818" />
   </component>
 </project>
