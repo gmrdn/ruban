@@ -1,5 +1,5 @@
 pub mod rendering {
-    use crate::{Status, Tasks};
+    use crate::types::{Tasks, Status, Task};
 
     pub fn greet_the_user(
         mut writer: impl std::io::Write,
@@ -24,7 +24,7 @@ pub mod rendering {
         Ok(())
     }
 
-    pub(crate) fn render_all_tasks(
+    pub fn render_all_tasks(
         tasks: &Tasks,
         mut writer: impl std::io::Write,
     ) -> Result<(), Box<dyn std::error::Error>> {
@@ -35,8 +35,6 @@ pub mod rendering {
         Ok(())
     }
 
-    #[cfg(test)]
-    use crate::Task;
     #[cfg(test)]
     use std::str::from_utf8;
 
