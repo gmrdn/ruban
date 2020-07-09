@@ -16,7 +16,6 @@ fn should_add_a_task_in_command_line() -> Result<(), Box<dyn std::error::Error>>
     Ok(())
 }
 
-
 #[test]
 fn should_list_all_tasks_in_command_line() -> Result<(), Box<dyn std::error::Error>> {
     let mut cmd = Command::cargo_bin("ruban")?;

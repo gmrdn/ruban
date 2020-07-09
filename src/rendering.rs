@@ -1,7 +1,6 @@
 pub mod rendering {
     use crate::Tasks;
 
-
     pub fn greet_the_user(
         mut writer: impl std::io::Write,
     ) -> Result<(), Box<dyn std::error::Error>> {

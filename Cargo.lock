@@ -269,6 +269,8 @@ dependencies = [
  "assert_cmd",
  "chrono",
  "predicates",
+ "serde",
+ "serde_json",
  "structopt",
 ]
 
