@@ -1,11 +1,17 @@
 use std::str::from_utf8;
 use structopt::StructOpt;
+use std::error::Error;
 
 #[derive(StructOpt)]
-struct Cli {
-    #[structopt(default_value = "", short = "t", long = "tags")]
-    tags: String,
-    task: String,
+enum Ruban {
+    Add {
+        #[structopt(default_value = "", short = "t", long = "tags")]
+        tags: String,
+        task: String,
+    },
+    Ls {},
+    Rm {},
+    Mv {},
 }
 
 #[derive(Debug)]
@@ -43,11 +49,15 @@ struct Task {
 #[derive(Debug)]
 enum Status {}
 
-fn main() {
-    let args = Cli::from_args();
+fn main() -> Result<(), Box<dyn Error>> {
     greet_the_user(&mut std::io::stdout());
-    confirm_the_task(args.task, &mut std::io::stdout());
-    confirm_the_tags(args.tags, &mut std::io::stdout());
+    match Ruban::from_args() {
+        Ruban::Add { task, tags} => {
+            confirm_the_task(task, &mut std::io::stdout());
+            confirm_the_tags(tags, &mut std::io::stdout())
+        }
+        _ => Ok(()),
+    }
 }
 
 fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
@@ -71,10 +81,13 @@ fn confirm_the_tags(
     Ok(())
 }
 
-fn render_all_tasks(tasks: &Tasks, mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
+fn render_all_tasks(
+    tasks: &Tasks,
+    mut writer: impl std::io::Write,
+) -> Result<(), Box<dyn std::error::Error>> {
     for task in tasks {
         writeln!(writer, "{} - {}", task.number, task.task)?;
-    };
+    }
     Ok(())
 }
 
