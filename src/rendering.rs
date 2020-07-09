@@ -29,6 +29,7 @@ pub mod rendering {
         tasks: &Tasks,
         mut writer: impl std::io::Write,
     ) -> Result<(), Box<dyn std::error::Error>> {
+        writeln!(writer, "All tasks:")?;
         for task in tasks {
             writeln!(writer, "{} - {}", task.number, task.task)?;
         }
@@ -88,7 +89,7 @@ pub mod rendering {
         render_all_tasks(&tasks, &mut result);
         assert_eq!(
             from_utf8(&result).unwrap(),
-            "1 - Repair the garage door.\n2 - Finish the Rust Book.\n"
+            "All tasks:\n1 - Repair the garage door.\n2 - Finish the Rust Book.\n"
         );
     }
 }

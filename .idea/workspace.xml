@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a1afb9-4ca6-4a8d-9517-f23fe3608c0a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/rendering.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rendering.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/rendering.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/cli.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594283670470</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Reorganized rendering in a separate module and added ls subcommand">
+      <created>1594286461144</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1594286461144</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -214,7 +222,8 @@
     <MESSAGE value="Added struct for Tasks and Task listing" />
     <MESSAGE value="Small refactoring" />
     <MESSAGE value="Added subcommands (Add, Ls, Rm, Mv)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added subcommands (Add, Ls, Rm, Mv)" />
+    <MESSAGE value="Reorganized rendering in a separate module and added ls subcommand" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reorganized rendering in a separate module and added ls subcommand" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="100" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594197634386">
@@ -225,30 +234,30 @@
       <screen x="0" y="23" width="1440" height="831" />
     </state>
     <state x="100" y="123" width="1240" height="631" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.831@0.23.1440.831" timestamp="1594066992106" />
-    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594283670328">
+    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1594286460974">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594283670328" />
-    <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1594286235012">
+    <state x="332" y="23" key="CommitChangelistDialog2/0.23.1440.831@0.23.1440.831" timestamp="1594286460974" />
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1594286820898">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594286235012" />
-    <state width="1398" height="294" key="GridCell.Tab.0.center" timestamp="1594286235011">
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1594286820898" />
+    <state width="1398" height="294" key="GridCell.Tab.0.center" timestamp="1594286820896">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594286235011" />
-    <state width="1398" height="294" key="GridCell.Tab.0.left" timestamp="1594286235010">
+    <state width="1398" height="294" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1594286820896" />
+    <state width="1398" height="294" key="GridCell.Tab.0.left" timestamp="1594286820895">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594286235010" />
-    <state width="1398" height="294" key="GridCell.Tab.0.right" timestamp="1594286235012">
+    <state width="1398" height="294" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1594286820895" />
+    <state width="1398" height="294" key="GridCell.Tab.0.right" timestamp="1594286820897">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594286235012" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594283676118">
+    <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1594286820897" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1594286463358">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594283676118" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.831@0.23.1440.831" timestamp="1594286463358" />
     <state x="534" y="270" key="export.test.results" timestamp="1594238047273">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
