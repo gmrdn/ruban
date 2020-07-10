@@ -1,14 +1,15 @@
+mod adapter_user_interface;
 mod adapter_dataprovider;
-mod core;
+mod taskmanager;
 mod port_dataprovider;
 mod rendering;
-mod types;
 
 use crate::adapter_dataprovider::DataFile;
-use crate::core::retrieve_tasks;
-use crate::rendering::{confirm_the_tags, confirm_the_task, greet_the_user, render_all_tasks};
-use crate::types::Cli;
+use crate::taskmanager::{Tasks, Task, Status};
+use crate::rendering::{confirm_the_task, greet_the_user, render_all_tasks};
 use structopt::StructOpt;
+use crate::adapter_user_interface::Cli;
+use chrono::{Utc};
 
 const STD_OUT_ERR_MSG: &str = "Unable to write message in standard output";
 
@@ -17,13 +18,21 @@ fn main() {
         filepath: "test_tasks.json".to_string(),
     };
 
-    let tasks = retrieve_tasks(source);
+    let mut tasks = Tasks::from(source);
 
     greet_the_user(&mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
     match Cli::from_args() {
-        Cli::Add { task, tags } => {
-            confirm_the_task(task, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
-            confirm_the_tags(tags, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
+        Cli::Add { description, tags } => {
+            let task = Task {
+                number: 0,
+                tags: Some(tags),
+                description,
+                creation_date: Utc::now().to_rfc3339(),
+                status: Status::ToDo
+            };
+            tasks.add(&task);
+            confirm_the_task(&task, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
+            render_all_tasks(&tasks, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
         }
         Cli::Ls {} => {
             render_all_tasks(&tasks, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);

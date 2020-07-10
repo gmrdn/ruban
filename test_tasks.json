@@ -3,28 +3,28 @@
     {
       "number": 1,
       "tags": "Home",
-      "task": "Clean the kids room",
+      "description": "Clean the kids room",
       "creation_date": "",
       "status": "ToDo"
     },
     {
       "number": 2,
       "tags": "",
-      "task": "Think about it",
+      "description": "Think about it",
       "creation_date": "2020-07-09",
       "status": "ToDo"
     },
     {
       "number": 4,
       "tags": "Dev, Book",
-      "task": "Read the Rust book",
+      "description": "Read the Rust book",
       "creation_date": "2020-07-03",
       "status": "ToDo"
     },
     {
       "number": 5,
       "tags": "Dev",
-      "task": "Add a way to read from file in Ruban",
+      "description": "Add a way to read from file in Ruban",
       "creation_date": "2020-07-09",
       "status": "ToDo"
     }

@@ -11,8 +11,7 @@ fn should_add_a_task_in_command_line() -> Result<(), Box<dyn std::error::Error>>
     cmd.arg("Clean the dishes");
     cmd.assert()
         .success()
-        .stdout(predicate::str::contains("New task:"));
-
+        .stdout(predicate::str::contains("Clean the dishes"));
     Ok(())
 }
 
