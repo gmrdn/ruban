@@ -35,7 +35,7 @@ fn main() {
     }
 }
 
-fn retrieve_tasks<T: DataProvider>(source: T) -> Tasks {
+fn retrieve_tasks(source: impl DataProvider) -> Tasks {
     let data_from_file = source.get_data();
 
     let tasks_from_json: Tasks = serde_json::from_str(data_from_file.as_str())
