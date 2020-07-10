@@ -1,5 +1,5 @@
 pub mod rendering {
-    use crate::types::{Tasks, Status, Task};
+    use crate::types::{Status, Task, Tasks};
 
     pub fn greet_the_user(
         mut writer: impl std::io::Write,

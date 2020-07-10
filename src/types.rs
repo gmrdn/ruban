@@ -1,6 +1,6 @@
-use structopt::StructOpt;
 use serde::{Deserialize, Serialize};
 use std::fs;
+use structopt::StructOpt;
 
 #[derive(StructOpt)]
 pub enum Cli {
@@ -13,7 +13,6 @@ pub enum Cli {
     Rm {},
     Mv {},
 }
-
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Tasks {
@@ -52,18 +51,4 @@ pub enum Status {
     ToDo,
     WIP,
     Done,
-}
-
-pub trait Data {
-    fn get_data(&self) -> String;
-}
-
-pub struct DataFile {
-    pub filepath: String,
-}
-
-impl Data for DataFile {
-    fn get_data(&self) -> String {
-        fs::read_to_string(&self.filepath).expect("Something went wrong reading the file")
-    }
 }

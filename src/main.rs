@@ -1,11 +1,17 @@
-mod types;
+mod adapter_dataprovider;
+mod port_dataprovider;
 mod rendering;
-use crate::rendering::rendering::{confirm_the_tags, confirm_the_task, greet_the_user};
+mod types;
+
+use crate::adapter_dataprovider::DataFile;
+use crate::port_dataprovider::DataProvider;
+use crate::rendering::rendering::{
+    confirm_the_tags, confirm_the_task, greet_the_user, render_all_tasks,
+};
+use crate::types::{Cli, Tasks};
 use serde::{Deserialize, Serialize};
 use std::fs;
 use structopt::StructOpt;
-use crate::types::{Cli, Tasks, DataFile, Data};
-
 
 const STD_OUT_ERR_MSG: &str = "Unable to write message in standard output";
 
@@ -23,16 +29,13 @@ fn main() {
             confirm_the_tags(tags, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
         }
         Cli::Ls {} => {
-            rendering::rendering::render_all_tasks(&tasks, &mut std::io::stdout())
-                .expect(STD_OUT_ERR_MSG);
+            render_all_tasks(&tasks, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
         }
         _ => (),
     }
 }
 
-
-
-fn retrieve_tasks<T: Data>(source: T) -> Tasks {
+fn retrieve_tasks<T: DataProvider>(source: T) -> Tasks {
     let data_from_file = source.get_data();
 
     let tasks_from_json: Tasks = serde_json::from_str(data_from_file.as_str())
@@ -54,13 +57,17 @@ fn should_retrieve_tasks() {
             }
         ]
     }"#;
-    struct TestData {data: String};
-    impl Data for TestData {
+    struct TestData {
+        data: String,
+    };
+    impl DataProvider for TestData {
         fn get_data(&self) -> String {
             (&self.data).to_string()
         }
     }
-    let source = TestData {data: data.to_string() };
+    let source = TestData {
+        data: data.to_string(),
+    };
     let wanted = "Clean the kids room".to_string();
     let got = retrieve_tasks(source);
     assert_eq!(got.tasks[0].task, wanted);
