@@ -1,4 +1,4 @@
-use crate::taskmanager::{Tasks, Task};
+use crate::taskmanager::{Task, Tasks};
 
 pub fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(writer, "Hello, Ruban User.")?;
@@ -6,7 +6,7 @@ pub fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std
 }
 
 pub fn confirm_the_task(
-   task: &Task,
+    task: &Task,
     mut writer: impl std::io::Write,
 ) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(writer, "{:?}", task)?;
@@ -25,7 +25,7 @@ pub fn render_all_tasks(
 }
 
 #[cfg(test)]
-use crate::taskmanager::{Status};
+use crate::taskmanager::Status;
 #[cfg(test)]
 use std::str::from_utf8;
 
@@ -38,12 +38,17 @@ fn should_greet_the_user() {
 
 #[test]
 fn should_confirm_the_task() {
-    let task = Task { number: 0, tags: None, description:"Do the laundry".to_string(), creation_date: "".to_string(), status: Status::ToDo };
+    let task = Task {
+        number: 0,
+        tags: None,
+        description: "Do the laundry".to_string(),
+        creation_date: "".to_string(),
+        status: Status::ToDo,
+    };
     let mut result = Vec::new();
     confirm_the_task(&task, &mut result).expect("");
     assert_eq!(from_utf8(&result).unwrap(), "Task { number: 0, tags: None, description: \"Do the laundry\", creation_date: \"\", status: ToDo }\n");
 }
-
 
 #[test]
 fn should_display_all_tasks() {
