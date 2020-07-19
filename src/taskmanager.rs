@@ -1,5 +1,5 @@
-use crate::port_dataprovider::DataProvider;
 use serde::{Deserialize, Serialize};
+use std::io::Read;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Tasks {
@@ -41,80 +41,49 @@ impl<'s> IntoIterator for &'s Tasks {
 }
 
 impl Tasks {
-    pub fn from(source: impl DataProvider) -> Tasks {
-        serde_json::from_str(source.get_data().as_str())
+    pub fn from(reader: impl Read) -> Tasks {
+        serde_json::from_reader(reader)
             .expect("Unable to serialize tasks from Json into struct Tasks")
     }
 
     pub fn add(&mut self, task: &Task,
-               mut writer: impl std::io::Write,
     ) {
         self.tasks.push(task.clone());
-        serde_json::to_writer_pretty(writer, &task).expect("Unable to write task to file");
     }
 
-    pub fn add_task_from_json(
-        &mut self,
-        json_task: String,
-        mut writer: impl std::io::Write,
-    ) -> Result<(), Box<dyn std::error::Error>> {
-        let task: Task = serde_json::from_str(json_task.as_str())
-            .expect("Unable to serialize task from Json into struct Task");
-        self.tasks.push(task.clone());
-        serde_json::to_writer_pretty(writer, &task).expect("Unable to write task to file");
-        Ok(())
+    pub fn save(&mut self, mut writer: impl std::io::Write) {
+        serde_json::to_writer_pretty(writer, &self.tasks).expect("Unable to write data to writer")
     }
 }
 
-#[cfg(test)]
-use std::str::from_utf8;
-
-#[test]
-fn should_serialize_from_source() {
-    let data = r#"
-    {
-        "tasks": [
-            {
-                "number": 1,
-                "tags": "Home",
-                "description": "Clean the kids room",
-                "creation_date": "",
-                "status": "ToDo"
-            }
-        ]
-    }"#;
-    struct TestData {
-        data: String,
-    };
-    impl DataProvider for TestData {
-        fn get_data(&self) -> String {
-            (&self.data).to_string()
-        }
-    }
-    let source = TestData {
-        data: data.to_string(),
-    };
-    let wanted = "Clean the kids room".to_string();
-    let got = Tasks::from(source);
-    assert_eq!(got.tasks[0].description, wanted);
-}
-
-#[test]
-fn should_create_tasks() {
-    let mut tasks: Tasks = Tasks { tasks: vec![] };
-    let mut result = Vec::new();
-    let data = r#"{
-  "number": 1,
-  "tags": "Home",
-  "description": "Clean the kids room",
-  "creation_date": "",
-  "status": "ToDo"
-}"#;
-
-    assert!(tasks
-        .add_task_from_json(data.to_string(), &mut result)
-        .is_ok());
-    assert_eq!(tasks.tasks.len(), 1);
-    assert_eq!(tasks.tasks[0].description, "Clean the kids room");
-    assert_eq!(from_utf8(&result).unwrap(), data);
-}
+//#[cfg(test)]
+//
+// #[test]
+// fn should_serialize_from_source() {
+//     let data = r#"
+//     {
+//         "tasks": [
+//             {
+//                 "number": 1,
+//                 "tags": "Home",
+//                 "description": "Clean the kids room",
+//                 "creation_date": "",
+//                 "status": "ToDo"
+//             }
+//         ]
+//     }"#;
+//     struct TestData {
+//         data: String,
+//     };
+//     impl Read for TestData {
+//         fn get_data(&self) -> String {
+//             (&self.data).to_string()
+//         }
+//     }
+//     let source = TestData {
+//         data: data.to_string(),
+//     };
+//     let wanted = "Clean the kids room".to_string();
+//     let got = Tasks::from(source);
+//     assert_eq!(got.tasks[0].description, wanted);
+// }
