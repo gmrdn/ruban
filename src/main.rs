@@ -18,7 +18,7 @@ fn main() {
     let source = OpenOptions::new()
         .read(true)
         .write(true)
-        .open("test_tasks.json")
+        .open("tasks.json")
         .expect("Unable to open file");
 
 
@@ -26,7 +26,7 @@ fn main() {
         .read(true)
         .write(true)
         .create(true)
-        .open("output.json")
+        .open("tasks.json")
         .expect("Unable to open file");
 
 

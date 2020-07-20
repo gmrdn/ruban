@@ -52,7 +52,7 @@ impl Tasks {
     }
 
     pub fn save(&mut self, mut writer: impl std::io::Write) {
-        serde_json::to_writer_pretty(writer, &self.tasks).expect("Unable to write data to writer")
+        serde_json::to_writer_pretty(writer, &self).expect("Unable to write data to writer")
     }
 }
 
