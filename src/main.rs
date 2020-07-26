@@ -8,7 +8,7 @@ use crate::adapter_user_interface::Cli;
 use crate::rendering::{confirm_the_task, greet_the_user, render_all_tasks};
 use crate::taskmanager::{Status, Task, Tasks};
 use chrono::Utc;
-use std::fs::{File, OpenOptions};
+use std::fs::{OpenOptions};
 use structopt::StructOpt;
 
 const STD_OUT_ERR_MSG: &str = "Unable to write message in standard output";

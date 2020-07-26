@@ -1,11 +1,8 @@
 use chrono::DateTime;
 use serde::{Deserialize, Serialize};
-use std::io::{Cursor, Read};
+use std::io::{Read};
 use chrono::Utc;
 use chrono::FixedOffset;
-use chrono::NaiveDate;
-use chrono::offset::TimeZone;
-use std::str::FromStr;
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Tasks {
@@ -39,7 +36,16 @@ impl Tasks {
     }
 
     pub fn add(&mut self, task: &Task) {
-        self.tasks.push(task.clone());
+        let mut task_index = 0;
+        let max_number = self.tasks.iter().map(|t| t.number).max();
+        match max_number {
+            Some(max) => task_index = max + 1,
+            None => task_index = 1
+        };
+        println!("task number to use : {}", task_index);
+        let mut task_to_add = task.clone();
+        task_to_add.number = task_index;
+        self.tasks.push(task_to_add);
     }
 
     pub fn save(&mut self, writer: impl std::io::Write) {
@@ -57,7 +63,7 @@ pub struct Task {
 }
 
 impl Task {
-    pub fn create(date: Option<DateTime<FixedOffset>>) -> Task {
+    pub fn create(description: String, tags: Option<String>, date: Option<DateTime<FixedOffset>>) -> Task {
         let current_date: String;
         match date {
             Some(d) => current_date = d.to_rfc3339(),
@@ -66,8 +72,8 @@ impl Task {
             
         return Task {
             number: 0,
-            tags: None,
-            description: "".to_string(),
+            tags: tags,
+            description: description,
             creation_date: current_date,
             status: Status::ToDo
         };
@@ -99,6 +105,21 @@ fn should_add_a_task() {
 #[test]
 fn should_create_a_task_with_current_date() {
     let fake_today = DateTime::parse_from_rfc3339("2020-07-25T16:39:57-08:00").unwrap();
-    let task = Task::create(Some(fake_today));
+    let task = Task::create("Test date".to_string(), Some("a, b, c".to_string()), Some(fake_today));
     assert_eq!(task.creation_date, fake_today.to_rfc3339());
+}
+
+
+#[test]
+fn should_increment_id_when_adding_tasks() {
+    let task1 = Task::create("Test 1".to_string(), Some("a, b, c".to_string()), None);
+    let task2 = Task::create("Test 2".to_string(), Some("a, b, c".to_string()), None);
+
+    let mut tasks = Tasks { tasks: vec![] };
+    tasks.add(&task1);
+    tasks.add(&task2);
+    
+    assert_eq!(tasks.tasks[0].number, 1);
+    assert_eq!(tasks.tasks[1].number, 2);
+     
 }
