@@ -1,26 +1,18 @@
+use chrono::DateTime;
 use serde::{Deserialize, Serialize};
-use std::io::Read;
+use std::io::{Cursor, Read};
+use chrono::Utc;
+use chrono::FixedOffset;
+use chrono::NaiveDate;
+use chrono::offset::TimeZone;
+use std::str::FromStr;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Tasks {
     pub tasks: Vec<Task>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct Task {
-    pub number: u32,
-    pub tags: Option<String>,
-    pub description: String,
-    pub creation_date: String,
-    pub status: Status,
-}
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy)]
-pub enum Status {
-    ToDo,
-    WIP,
-    Done,
-}
 
 impl IntoIterator for Tasks {
     type Item = Task;
@@ -46,44 +38,67 @@ impl Tasks {
             .expect("Unable to serialize tasks from Json into struct Tasks")
     }
 
-    pub fn add(&mut self, task: &Task,
-    ) {
+    pub fn add(&mut self, task: &Task) {
         self.tasks.push(task.clone());
     }
 
-    pub fn save(&mut self, mut writer: impl std::io::Write) {
+    pub fn save(&mut self, writer: impl std::io::Write) {
         serde_json::to_writer_pretty(writer, &self).expect("Unable to write data to writer")
     }
 }
 
-//#[cfg(test)]
-//
-// #[test]
-// fn should_serialize_from_source() {
-//     let data = r#"
-//     {
-//         "tasks": [
-//             {
-//                 "number": 1,
-//                 "tags": "Home",
-//                 "description": "Clean the kids room",
-//                 "creation_date": "",
-//                 "status": "ToDo"
-//             }
-//         ]
-//     }"#;
-//     struct TestData {
-//         data: String,
-//     };
-//     impl Read for TestData {
-//         fn get_data(&self) -> String {
-//             (&self.data).to_string()
-//         }
-//     }
-//     let source = TestData {
-//         data: data.to_string(),
-//     };
-//     let wanted = "Clean the kids room".to_string();
-//     let got = Tasks::from(source);
-//     assert_eq!(got.tasks[0].description, wanted);
-// }
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Task {
+    pub number: u32,
+    pub tags: Option<String>,
+    pub description: String,
+    pub creation_date: String,
+    pub status: Status,
+}
+
+impl Task {
+    pub fn create(date: Option<DateTime<FixedOffset>>) -> Task {
+        let current_date: String;
+        match date {
+            Some(d) => current_date = d.to_rfc3339(),
+            None => current_date = Utc::now().to_rfc3339()
+        };
+            
+        return Task {
+            number: 0,
+            tags: None,
+            description: "".to_string(),
+            creation_date: current_date,
+            status: Status::ToDo
+        };
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Copy)]
+pub enum Status {
+    ToDo,
+    WIP,
+    Done,
+}
+
+#[test]
+fn should_add_a_task() {
+    let mut tasks = Tasks { tasks: vec![] };
+    let new_task = Task {
+        number: 0,
+        tags: None,
+        description: "".to_string(),
+        creation_date: "".to_string(),
+        status: Status::ToDo,
+    };
+    tasks.add(&new_task);
+    assert_eq!(tasks.tasks.len(), 1);
+}
+
+
+#[test]
+fn should_create_a_task_with_current_date() {
+    let fake_today = DateTime::parse_from_rfc3339("2020-07-25T16:39:57-08:00").unwrap();
+    let task = Task::create(Some(fake_today));
+    assert_eq!(task.creation_date, fake_today.to_rfc3339());
+}

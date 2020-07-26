@@ -4,13 +4,12 @@ mod port_dataprovider;
 mod rendering;
 mod taskmanager;
 
-//use crate::adapter_dataprovider::DataFile;
 use crate::adapter_user_interface::Cli;
 use crate::rendering::{confirm_the_task, greet_the_user, render_all_tasks};
 use crate::taskmanager::{Status, Task, Tasks};
 use chrono::Utc;
-use structopt::StructOpt;
 use std::fs::{File, OpenOptions};
+use structopt::StructOpt;
 
 const STD_OUT_ERR_MSG: &str = "Unable to write message in standard output";
 
@@ -21,14 +20,12 @@ fn main() {
         .open("tasks.json")
         .expect("Unable to open file");
 
-
     let destination = OpenOptions::new()
         .read(true)
         .write(true)
         .create(true)
         .open("tasks.json")
         .expect("Unable to open file");
-
 
     let mut tasks = Tasks::from(&source);
 
@@ -42,7 +39,6 @@ fn main() {
                 creation_date: Utc::now().to_rfc3339(),
                 status: Status::ToDo,
             };
-            //let file = File::create("foo.txt").expect("Unable to create file");
 
             tasks.add(&task);
             tasks.save(&destination);
