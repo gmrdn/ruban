@@ -36,7 +36,7 @@ impl Tasks {
     }
 
     pub fn add(&mut self, task: &Task) {
-        let mut task_index = 0;
+        let task_index;
         let max_number = self.tasks.iter().map(|t| t.number).max();
         match max_number {
             Some(max) => task_index = max + 1,
@@ -52,7 +52,7 @@ impl Tasks {
         let mut i = 0;
         while i != self.tasks.len() {
             if self.tasks[i].number == number {
-                let val = self.tasks.remove(i);
+                self.tasks.remove(i);
             } else {
                 i += 1;
             }
@@ -82,13 +82,13 @@ impl Task {
             None => current_date = Utc::now().to_rfc3339()
         };
             
-        return Task {
+        Task {
             number: 0,
-            tags: tags,
-            description: description,
+            tags,
+            description,
             creation_date: current_date,
             status: Status::ToDo
-        };
+        }
     }
 }
 
