@@ -13,9 +13,20 @@ pub fn confirm_the_task(
     Ok(())
 }
 
-
-pub fn confirm_task_removed(number: u32, mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
+pub fn confirm_task_removed(
+    number: u32,
+    mut writer: impl std::io::Write,
+) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(writer, "Removed task {}", number)?;
+    Ok(())
+}
+
+pub fn confirm_task_moved(
+    number: u32,
+    status: &str,
+    mut writer: impl std::io::Write,
+) -> Result<(), Box<dyn std::error::Error>> {  
+    writeln!(writer, "Moved task {} to status {}", number, status)?;
     Ok(())
 }
 

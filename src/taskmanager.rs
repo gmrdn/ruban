@@ -1,15 +1,13 @@
 use chrono::DateTime;
-use serde::{Deserialize, Serialize};
-use std::io::{Read};
-use chrono::Utc;
 use chrono::FixedOffset;
+use chrono::Utc;
+use serde::{Deserialize, Serialize};
+use std::io::Read;
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Tasks {
     pub tasks: Vec<Task>,
 }
-
-
 
 impl IntoIterator for Tasks {
     type Item = Task;
@@ -40,7 +38,7 @@ impl Tasks {
         let max_number = self.tasks.iter().map(|t| t.number).max();
         match max_number {
             Some(max) => task_index = max + 1,
-            None => task_index = 1
+            None => task_index = 1,
         };
         println!("task number to use : {}", task_index);
         let mut task_to_add = task.clone();
@@ -57,10 +55,17 @@ impl Tasks {
                 i += 1;
             }
         }
-
     }
 
-    pub fn save(&mut self, writer: impl std::io::Write) {   
+    pub fn change_status_to(&mut self, number: u32, new_status: Status) {
+        for i in 0..self.tasks.len() {
+            if self.tasks[i].number == number {
+                self.tasks[i].status = new_status
+            }
+        }
+    }
+
+    pub fn save(&mut self, writer: impl std::io::Write) {
         serde_json::to_writer_pretty(writer, &self).expect("Unable to write data to writer")
     }
 }
@@ -75,24 +80,28 @@ pub struct Task {
 }
 
 impl Task {
-    pub fn create(description: String, tags: Option<String>, date: Option<DateTime<FixedOffset>>) -> Task {
+    pub fn create(
+        description: String,
+        tags: Option<String>,
+        date: Option<DateTime<FixedOffset>>,
+    ) -> Task {
         let current_date: String;
         match date {
             Some(d) => current_date = d.to_rfc3339(),
-            None => current_date = Utc::now().to_rfc3339()
+            None => current_date = Utc::now().to_rfc3339(),
         };
-            
+
         Task {
             number: 0,
             tags,
             description,
             creation_date: current_date,
-            status: Status::ToDo
+            status: Status::ToDo,
         }
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy)]
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq)]
 pub enum Status {
     ToDo,
     WIP,
@@ -113,14 +122,16 @@ fn should_add_a_task() {
     assert_eq!(tasks.tasks.len(), 1);
 }
 
-
 #[test]
 fn should_create_a_task_with_current_date() {
     let fake_today = DateTime::parse_from_rfc3339("2020-07-25T16:39:57-08:00").unwrap();
-    let task = Task::create("Test date".to_string(), Some("a, b, c".to_string()), Some(fake_today));
+    let task = Task::create(
+        "Test date".to_string(),
+        Some("a, b, c".to_string()),
+        Some(fake_today),
+    );
     assert_eq!(task.creation_date, fake_today.to_rfc3339());
 }
-
 
 #[test]
 fn should_increment_id_when_adding_tasks() {
@@ -130,10 +141,9 @@ fn should_increment_id_when_adding_tasks() {
     let mut tasks = Tasks { tasks: vec![] };
     tasks.add(&task1);
     tasks.add(&task2);
-    
+
     assert_eq!(tasks.tasks[0].number, 1);
     assert_eq!(tasks.tasks[1].number, 2);
-     
 }
 
 #[test]
@@ -145,12 +155,19 @@ fn should_remove_a_task_by_number() {
     tasks.add(&task1);
     tasks.add(&task2);
 
-
     assert_eq!(tasks.tasks.len(), 2);
     assert_eq!(tasks.tasks[0].description, "Test 1".to_string());
 
     tasks.remove(1);
     assert_eq!(tasks.tasks.len(), 1);
     assert_eq!(tasks.tasks[0].description, "Test 2".to_string());
-    
+}
+
+#[test]
+fn should_move_a_task_to_wip() {
+    let task1 = Task::create("Task to move".to_string(), None, None);
+    let mut tasks = Tasks { tasks: vec![] };
+    tasks.add(&task1);
+    tasks.change_status_to(1, Status::WIP);
+    assert_eq!(tasks.tasks[0].status, Status::WIP);
 }

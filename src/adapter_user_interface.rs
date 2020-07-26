@@ -11,5 +11,8 @@ pub enum Cli {
     Rm {
         number: u32,
     },
-    Mv {},
+    Mv {
+        number: u32,
+        status: String,
+    },
 }
