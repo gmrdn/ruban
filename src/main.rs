@@ -5,7 +5,7 @@ mod rendering;
 mod taskmanager;
 
 use crate::adapter_user_interface::Cli;
-use crate::rendering::{confirm_the_task, greet_the_user, render_all_tasks};
+use crate::rendering::{confirm_the_task, confirm_task_removed, greet_the_user, render_all_tasks};
 use crate::taskmanager::{Status, Task, Tasks};
 use chrono::Utc;
 use std::fs::{OpenOptions};
@@ -47,6 +47,12 @@ fn main() {
         }
         Cli::Ls {} => {
             render_all_tasks(&tasks, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
+        }
+        Cli::Rm { number } => {
+            tasks.remove(number);
+            destination.set_len(0).expect("Unable to clear content from file");
+            tasks.save(&destination);
+            confirm_task_removed(number, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
         }
         _ => (),
     }

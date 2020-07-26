@@ -13,6 +13,12 @@ pub fn confirm_the_task(
     Ok(())
 }
 
+
+pub fn confirm_task_removed(number: u32, mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
+    writeln!(writer, "Removed task {}", number)?;
+    Ok(())
+}
+
 pub fn render_all_tasks(
     tasks: &Tasks,
     mut writer: impl std::io::Write,

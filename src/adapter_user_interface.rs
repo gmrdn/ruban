@@ -8,6 +8,8 @@ pub enum Cli {
         description: String,
     },
     Ls {},
-    Rm {},
+    Rm {
+        number: u32,
+    },
     Mv {},
 }

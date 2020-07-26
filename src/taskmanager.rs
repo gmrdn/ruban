@@ -48,7 +48,19 @@ impl Tasks {
         self.tasks.push(task_to_add);
     }
 
-    pub fn save(&mut self, writer: impl std::io::Write) {
+    pub fn remove(&mut self, number: u32) {
+        let mut i = 0;
+        while i != self.tasks.len() {
+            if self.tasks[i].number == number {
+                let val = self.tasks.remove(i);
+            } else {
+                i += 1;
+            }
+        }
+
+    }
+
+    pub fn save(&mut self, writer: impl std::io::Write) {   
         serde_json::to_writer_pretty(writer, &self).expect("Unable to write data to writer")
     }
 }
@@ -122,4 +134,23 @@ fn should_increment_id_when_adding_tasks() {
     assert_eq!(tasks.tasks[0].number, 1);
     assert_eq!(tasks.tasks[1].number, 2);
      
+}
+
+#[test]
+fn should_remove_a_task_by_number() {
+    let task1 = Task::create("Test 1".to_string(), Some("a, b, c".to_string()), None);
+    let task2 = Task::create("Test 2".to_string(), Some("a, b, c".to_string()), None);
+
+    let mut tasks = Tasks { tasks: vec![] };
+    tasks.add(&task1);
+    tasks.add(&task2);
+
+
+    assert_eq!(tasks.tasks.len(), 2);
+    assert_eq!(tasks.tasks[0].description, "Test 1".to_string());
+
+    tasks.remove(1);
+    assert_eq!(tasks.tasks.len(), 1);
+    assert_eq!(tasks.tasks[0].description, "Test 2".to_string());
+    
 }
