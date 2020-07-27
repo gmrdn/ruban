@@ -8,13 +8,6 @@
       "status": "Done"
     },
     {
-      "number": 2,
-      "tags": "",
-      "description": "Think about it",
-      "creation_date": "2020-07-09",
-      "status": "Done"
-    },
-    {
       "number": 4,
       "tags": "Dev, Book",
       "description": "Read the Rust book",
@@ -29,13 +22,6 @@
       "status": "Done"
     },
     {
-      "number": 6,
-      "tags": "Ruban",
-      "description": "Ajouter des line breaks dans les cartes",
-      "creation_date": "2020-07-27T09:47:12.150686+00:00",
-      "status": "ToDo"
-    },
-    {
       "number": 7,
       "tags": "Dev, Rust, Ruban",
       "description": "Refacto render table",
@@ -47,7 +33,7 @@
       "tags": "Dev, Rust, Ruban",
       "description": "Essayer textwrap pour gérer le multi line",
       "creation_date": "2020-07-27T11:55:30.451348+00:00",
-      "status": "WIP"
+      "status": "Done"
     }
   ]
 }
