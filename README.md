@@ -12,6 +12,8 @@ I also wanted to learn Rust, so this is a pet project to experiment with CLI in 
 
 #### Add a task:
 
+![](create.gif)
+
 `ruban add -t "House" "Repair the garage door"`
 
 The `-t` or `--tags` flag allows to add tags to a task so they can be sorted and classified.
@@ -29,8 +31,6 @@ This command shows the list of all tasks
 
 #### Move a task from one status to another:
 
+![](move.gif)
+
 `ruban mv <number> <status>`
-
-### Demo
-
-![](demo.gif)
