@@ -1,5 +1,5 @@
 use crate::taskmanager::{Status, Task, Tasks};
-use prettytable::Table;
+use prettytable::{Table, Cell, Row};
 
 pub fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(writer, "Hello, Ruban User.")?;
@@ -40,44 +40,31 @@ pub fn render_all_tasks(
     let mut table = Table::new();
     table.add_row(row!["To Do", "WIP", "Done"]);
 
-    let tasks_todo = tasks
-        .into_iter()
-        .filter(|t| t.status == Status::ToDo)
-        .cloned()
-        .collect::<Vec<Task>>();
-    let tasks_wip = tasks
-        .into_iter()
-        .filter(|t| t.status == Status::WIP)
-        .cloned()
-        .collect::<Vec<Task>>();
-    let tasks_done = tasks
-        .into_iter()
-        .filter(|t| t.status == Status::Done)
-        .cloned()
-        .collect::<Vec<Task>>();
+    let mut tasks_by_statuses: Vec<Vec<Task>> = vec![];
+
+    for status in Status::iterator() {
+        tasks_by_statuses.push(tasks.tasks_by_status(status))
+    }
+
 
     for i in 0..tasks.into_iter().len() {
-        let todo: String;
-        let wip: String;
-        let done: String;
+        let mut cells = vec![];
 
-        match tasks_todo.iter().nth(i) {
-            Some(t) => todo = format!("{} - {}", t.number, t.description.as_str()),
-            None => todo = "".to_string(),
-        };
+        for j in 0..tasks_by_statuses.len() {
+            let tasks_current_status_and_current_row = tasks_by_statuses[j].iter().nth(i);
+            
+            println!("tasks current status and current row {:?}", tasks_current_status_and_current_row);
 
-        match tasks_wip.iter().nth(i) {
-            Some(t) => wip = format!("{} - {}", t.number, t.description.as_str()),
-            None => wip = "".to_string(),
-        };
-
-        match tasks_done.iter().nth(i) {
-            Some(t) => done = format!("{} - {}", t.number, t.description.as_str()),
-            None => done = "".to_string(),
-        };
-
-        if todo != "" || wip != "" || done != "" {
-            table.add_row(row![todo, wip, done]);
+            match tasks_current_status_and_current_row {
+                Some(t) => cells.push(Cell::new(format!("{} - {}", t.number, t.description).as_str())),
+                None => cells.push(Cell::new("")),
+            };
+        }
+        for cell in &cells {
+            if cell.get_content() != "" {
+                table.add_row(Row::from(cells));
+                break;
+            }
         }
     }
 

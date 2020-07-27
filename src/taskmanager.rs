@@ -4,7 +4,8 @@ use chrono::Utc;
 use serde::{Deserialize, Serialize};
 use std::io::Read;
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+
+#[derive(Debug, Serialize, Deserialize, Default,)]
 pub struct Tasks {
     pub tasks: Vec<Task>,
 }
@@ -68,6 +69,15 @@ impl Tasks {
     pub fn save(&mut self, writer: impl std::io::Write) {
         serde_json::to_writer_pretty(writer, &self).expect("Unable to write data to writer")
     }
+
+
+    pub fn tasks_by_status(&self, status: Status) -> Vec<Task> {
+        self.tasks
+        .iter()
+        .filter(|t| t.status == status)
+        .cloned()
+        .collect::<Vec<Task>>()
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -106,6 +116,12 @@ pub enum Status {
     ToDo,
     WIP,
     Done,
+}
+
+impl Status {
+    pub fn iterator() -> impl Iterator<Item = Status> {
+        [Status::ToDo, Status::WIP, Status::Done].iter().copied()
+    }
 }
 
 #[test]

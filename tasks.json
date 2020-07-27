@@ -40,7 +40,14 @@
       "tags": "Dev, Rust, Ruban",
       "description": "Refacto render table",
       "creation_date": "2020-07-27T11:52:37.012045+00:00",
-      "status": "WIP"
+      "status": "Done"
+    },
+    {
+      "number": 8,
+      "tags": "Dev, Rust, Ruban",
+      "description": "Essayer textwrap pour gérer le multi line",
+      "creation_date": "2020-07-27T11:55:30.451348+00:00",
+      "status": "ToDo"
     }
   ]
 }
