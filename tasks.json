@@ -5,14 +5,14 @@
       "tags": "Home",
       "description": "Clean the kids room",
       "creation_date": "",
-      "status": "ToDo"
+      "status": "Done"
     },
     {
       "number": 2,
       "tags": "",
       "description": "Think about it",
       "creation_date": "2020-07-09",
-      "status": "ToDo"
+      "status": "WIP"
     },
     {
       "number": 4,
@@ -26,6 +26,13 @@
       "tags": "Dev",
       "description": "Add a way to read from file in Ruban",
       "creation_date": "2020-07-09",
+      "status": "ToDo"
+    },
+    {
+      "number": 6,
+      "tags": "Ruban",
+      "description": "Ajouter des line breaks dans les cartes",
+      "creation_date": "2020-07-27T09:47:12.150686+00:00",
       "status": "ToDo"
     }
   ]

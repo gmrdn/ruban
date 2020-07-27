@@ -4,6 +4,9 @@ mod port_dataprovider;
 mod rendering;
 mod taskmanager;
 
+#[macro_use] extern crate prettytable;
+
+
 use crate::adapter_user_interface::Cli;
 use crate::rendering::{confirm_task_removed, confirm_the_task, confirm_task_moved, greet_the_user, render_all_tasks};
 use crate::taskmanager::{Status, Task, Tasks};
