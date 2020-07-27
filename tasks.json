@@ -12,7 +12,7 @@
       "tags": "",
       "description": "Think about it",
       "creation_date": "2020-07-09",
-      "status": "WIP"
+      "status": "Done"
     },
     {
       "number": 4,
@@ -26,7 +26,7 @@
       "tags": "Dev",
       "description": "Add a way to read from file in Ruban",
       "creation_date": "2020-07-09",
-      "status": "ToDo"
+      "status": "Done"
     },
     {
       "number": 6,
@@ -34,6 +34,13 @@
       "description": "Ajouter des line breaks dans les cartes",
       "creation_date": "2020-07-27T09:47:12.150686+00:00",
       "status": "ToDo"
+    },
+    {
+      "number": 7,
+      "tags": "Dev, Rust, Ruban",
+      "description": "Refacto render table",
+      "creation_date": "2020-07-27T11:52:37.012045+00:00",
+      "status": "WIP"
     }
   ]
 }

@@ -60,6 +60,7 @@ fn main() {
                 .expect("Unable to clear content from file");
             tasks.save(&destination);
             confirm_task_removed(number, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
+            render_all_tasks(&tasks, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
         }
         Cli::Mv { number, status } => {
             let new_status: Status;
@@ -75,6 +76,7 @@ fn main() {
                 .expect("Unable to clear content from file");
             tasks.save(&destination);
             confirm_task_moved(number, &status, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
+            render_all_tasks(&tasks, &mut std::io::stdout()).expect(STD_OUT_ERR_MSG);
         }
     }
 }

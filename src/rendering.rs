@@ -57,23 +57,23 @@ pub fn render_all_tasks(
         .collect::<Vec<Task>>();
 
     for i in 0..tasks.into_iter().len() {
-        let todo: &str;
-        let wip: &str;
-        let done: &str;
+        let todo: String;
+        let wip: String;
+        let done: String;
 
         match tasks_todo.iter().nth(i) {
-            Some(t) => todo = t.description.as_str(),
-            None => todo = "",
+            Some(t) => todo = format!("{} - {}", t.number, t.description.as_str()),
+            None => todo = "".to_string(),
         };
 
         match tasks_wip.iter().nth(i) {
-            Some(t) => wip = t.description.as_str(),
-            None => wip = "",
+            Some(t) => wip = format!("{} - {}", t.number, t.description.as_str()),
+            None => wip = "".to_string(),
         };
 
         match tasks_done.iter().nth(i) {
-            Some(t) => done = t.description.as_str(),
-            None => done = "",
+            Some(t) => done = format!("{} - {}", t.number, t.description.as_str()),
+            None => done = "".to_string(),
         };
 
         if todo != "" || wip != "" || done != "" {
@@ -144,7 +144,7 @@ fn should_display_all_tasks() {
                 status: Status::WIP,
             },
             Task {
-                number: 4,
+                number: 5,
                 tags: Some("Dev".to_string()),
                 description: "Read the doc".to_string(),
                 creation_date: "1996-12-19T16:39:57-08:00".to_string(),
@@ -158,13 +158,13 @@ fn should_display_all_tasks() {
     assert_eq!(
         from_utf8(&result).unwrap(),
         "All tasks:
-+-------------------------+------------------+---------------+
-| To Do                   | WIP              | Done          |
-+-------------------------+------------------+---------------+
-| Repair the garage door. | Write unit tests | Pay the bills |
-+-------------------------+------------------+---------------+
-| Finish the Rust Book.   |                  | Read the doc  |
-+-------------------------+------------------+---------------+
++-----------------------------+----------------------+-------------------+
+| To Do                       | WIP                  | Done              |
++-----------------------------+----------------------+-------------------+
+| 1 - Repair the garage door. | 4 - Write unit tests | 3 - Pay the bills |
++-----------------------------+----------------------+-------------------+
+| 2 - Finish the Rust Book.   |                      | 5 - Read the doc  |
++-----------------------------+----------------------+-------------------+
 "
     );
 }
