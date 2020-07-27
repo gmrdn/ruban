@@ -34,7 +34,6 @@
 //     Ok(())
 // }
 
-
 // #[test]
 // fn should_move_a_task_through_all_status() -> Result<(), Box<dyn std::error::Error>>  {
 //     let mut cmd = Command::cargo_bin("ruban")?;
@@ -43,6 +42,6 @@
 //     cmd.arg("WIP");
 //     cmd.assert()
 //         .success()
-//         .stdout(predicate::str::contains("Moved task 2 to status WIP"));    
-//     Ok(())   
+//         .stdout(predicate::str::contains("Moved task 2 to status WIP"));
+//     Ok(())
 // }

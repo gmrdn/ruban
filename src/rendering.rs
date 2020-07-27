@@ -1,7 +1,5 @@
-use crate::taskmanager::{Task, Tasks, Status};
-use prettytable::{Table };
-
-
+use crate::taskmanager::{Status, Task, Tasks};
+use prettytable::Table;
 
 pub fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(writer, "Hello, Ruban User.")?;
@@ -28,7 +26,7 @@ pub fn confirm_task_moved(
     number: u32,
     status: &str,
     mut writer: impl std::io::Write,
-) -> Result<(), Box<dyn std::error::Error>> {  
+) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(writer, "Moved task {} to status {}", number, status)?;
     Ok(())
 }
@@ -42,12 +40,21 @@ pub fn render_all_tasks(
     let mut table = Table::new();
     table.add_row(row!["To Do", "WIP", "Done"]);
 
-
-
-    let tasks_todo = tasks.into_iter().filter(|t| t.status == Status::ToDo).cloned().collect::<Vec<Task>>();
-    let tasks_wip = tasks.into_iter().filter(|t| t.status == Status::WIP).cloned().collect::<Vec<Task>>();
-    let tasks_done = tasks.into_iter().filter(|t| t.status == Status::Done).cloned().collect::<Vec<Task>>();
-
+    let tasks_todo = tasks
+        .into_iter()
+        .filter(|t| t.status == Status::ToDo)
+        .cloned()
+        .collect::<Vec<Task>>();
+    let tasks_wip = tasks
+        .into_iter()
+        .filter(|t| t.status == Status::WIP)
+        .cloned()
+        .collect::<Vec<Task>>();
+    let tasks_done = tasks
+        .into_iter()
+        .filter(|t| t.status == Status::Done)
+        .cloned()
+        .collect::<Vec<Task>>();
 
     for i in 0..tasks.into_iter().len() {
         let todo: &str;
@@ -56,26 +63,27 @@ pub fn render_all_tasks(
 
         match tasks_todo.iter().nth(i) {
             Some(t) => todo = t.description.as_str(),
-            None => todo = ""
+            None => todo = "",
         };
 
         match tasks_wip.iter().nth(i) {
             Some(t) => wip = t.description.as_str(),
-            None => wip = ""
+            None => wip = "",
         };
 
         match tasks_done.iter().nth(i) {
             Some(t) => done = t.description.as_str(),
-            None => done = ""
+            None => done = "",
         };
 
         if todo != "" || wip != "" || done != "" {
             table.add_row(row![todo, wip, done]);
         }
     }
-    
 
-    table.print(&mut writer).expect("Unable to write table in writer");
+    table
+        .print(&mut writer)
+        .expect("Unable to write table in writer");
     Ok(())
 }
 
@@ -141,7 +149,7 @@ fn should_display_all_tasks() {
                 description: "Read the doc".to_string(),
                 creation_date: "1996-12-19T16:39:57-08:00".to_string(),
                 status: Status::Done,
-            }, 
+            },
         ],
     };
     let mut result = Vec::new();

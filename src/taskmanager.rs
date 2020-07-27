@@ -68,7 +68,6 @@ impl Tasks {
     pub fn save(&mut self, writer: impl std::io::Write) {
         serde_json::to_writer_pretty(writer, &self).expect("Unable to write data to writer")
     }
-    
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
