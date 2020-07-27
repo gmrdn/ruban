@@ -1,12 +1,10 @@
-mod adapter_dataprovider;
-mod adapter_user_interface;
-mod port_dataprovider;
+mod cli;
 mod rendering;
 mod taskmanager;
 
 extern crate prettytable;
 
-use crate::adapter_user_interface::Cli;
+use crate::cli::Cli;
 use crate::rendering::{
     confirm_task_moved, confirm_task_removed, confirm_the_task, greet_the_user, render_all_tasks,
 };
