@@ -74,8 +74,8 @@ pub fn render_all_tasks(
         }
     }
     
-    table.printstd();
 
+    table.print(&mut writer).expect("Unable to write table in writer");
     Ok(())
 }
 
@@ -103,31 +103,52 @@ fn should_confirm_the_task() {
     assert_eq!(from_utf8(&result).unwrap(), "Task { number: 0, tags: None, description: \"Do the laundry\", creation_date: \"\", status: ToDo }\n");
 }
 
-// #[test]
-// fn should_display_all_tasks() {
-//     let tasks = Tasks {
-//         tasks: vec![
-//             Task {
-//                 number: 1,
-//                 tags: Some("House".to_string()),
-//                 description: "Repair the garage door.".to_string(),
-//                 creation_date: "1996-12-19T16:39:57-08:00".to_string(),
-//                 status: Status::ToDo,
-//             },
-//             Task {
-//                 number: 2,
-//                 tags: Some("Dev".to_string()),
-//                 description: "Finish the Rust Book.".to_string(),
-//                 creation_date: "1996-12-19T16:39:57-08:00".to_string(),
-//                 status: Status::ToDo,
-//             },
-//         ],
-//     };
-//     let mut result = Vec::new();
+#[test]
+fn should_display_all_tasks() {
+    let tasks = Tasks {
+        tasks: vec![
+            Task {
+                number: 1,
+                tags: Some("House".to_string()),
+                description: "Repair the garage door.".to_string(),
+                creation_date: "1996-12-19T16:39:57-08:00".to_string(),
+                status: Status::ToDo,
+            },
+            Task {
+                number: 2,
+                tags: Some("Dev".to_string()),
+                description: "Finish the Rust Book.".to_string(),
+                creation_date: "1996-12-19T16:39:57-08:00".to_string(),
+                status: Status::ToDo,
+            },
+            Task {
+                number: 3,
+                tags: Some("House".to_string()),
+                description: "Pay the bills".to_string(),
+                creation_date: "1996-12-19T16:39:57-08:00".to_string(),
+                status: Status::Done,
+            },
+            Task {
+                number: 4,
+                tags: Some("Dev".to_string()),
+                description: "Write unit tests".to_string(),
+                creation_date: "1996-12-19T16:39:57-08:00".to_string(),
+                status: Status::WIP,
+            },
+            Task {
+                number: 4,
+                tags: Some("Dev".to_string()),
+                description: "Read the doc".to_string(),
+                creation_date: "1996-12-19T16:39:57-08:00".to_string(),
+                status: Status::Done,
+            }, 
+        ],
+    };
+    let mut result = Vec::new();
 
-//     render_all_tasks(&tasks, &mut result).expect("");
-//     assert_eq!(
-//         from_utf8(&result).unwrap(),
-//         "All tasks:\n1 - Repair the garage door. - 1996-12-19T16:39:57-08:00\n2 - Finish the Rust Book. - 1996-12-19T16:39:57-08:00\n"
-//     );
-// }
+    render_all_tasks(&tasks, &mut result).expect("unable to render all tasks");
+    assert_eq!(
+        from_utf8(&result).unwrap(),
+        "All tasks:\n+-------------------------+------------------+---------------+\n| To Do                   | WIP              | Done          |\n+-------------------------+------------------+---------------+\n| Repair the garage door. | Write unit tests | Pay the bills |\n+-------------------------+------------------+---------------+\n| Finish the Rust Book.   |                  | Read the doc  |\n+-------------------------+------------------+---------------+\n"
+    );
+}
