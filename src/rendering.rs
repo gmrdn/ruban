@@ -157,6 +157,14 @@ fn should_display_all_tasks() {
     render_all_tasks(&tasks, &mut result).expect("unable to render all tasks");
     assert_eq!(
         from_utf8(&result).unwrap(),
-        "All tasks:\n+-------------------------+------------------+---------------+\n| To Do                   | WIP              | Done          |\n+-------------------------+------------------+---------------+\n| Repair the garage door. | Write unit tests | Pay the bills |\n+-------------------------+------------------+---------------+\n| Finish the Rust Book.   |                  | Read the doc  |\n+-------------------------+------------------+---------------+\n"
+        "All tasks:
++-------------------------+------------------+---------------+
+| To Do                   | WIP              | Done          |
++-------------------------+------------------+---------------+
+| Repair the garage door. | Write unit tests | Pay the bills |
++-------------------------+------------------+---------------+
+| Finish the Rust Book.   |                  | Read the doc  |
++-------------------------+------------------+---------------+
+"
     );
 }
