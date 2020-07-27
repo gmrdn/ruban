@@ -1,5 +1,5 @@
 use crate::taskmanager::{Status, Task, Tasks};
-use prettytable::{Table, Cell, Row};
+use prettytable::{color, Attr, Cell, Row, Table};
 
 pub fn greet_the_user(mut writer: impl std::io::Write) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(writer, "Hello, Ruban User.")?;
@@ -38,7 +38,17 @@ pub fn render_all_tasks(
     writeln!(writer, "All tasks:")?;
 
     let mut table = Table::new();
-    table.add_row(row!["To Do", "WIP", "Done"]);
+    table.add_row(Row::new(vec![
+        Cell::new("To Do")
+            .with_style(Attr::Bold)
+            .with_style(Attr::ForegroundColor(color::GREEN)),
+        Cell::new("Work in Progress")
+            .with_style(Attr::Bold)
+            .with_style(Attr::ForegroundColor(color::GREEN)),
+        Cell::new("Done")
+            .with_style(Attr::Bold)
+            .with_style(Attr::ForegroundColor(color::GREEN)),
+    ]));
 
     let mut tasks_by_statuses: Vec<Vec<Task>> = vec![];
 
@@ -46,17 +56,17 @@ pub fn render_all_tasks(
         tasks_by_statuses.push(tasks.tasks_by_status(status))
     }
 
-
     for i in 0..tasks.into_iter().len() {
         let mut cells = vec![];
 
-        for j in 0..tasks_by_statuses.len() {
-            let tasks_current_status_and_current_row = tasks_by_statuses[j].iter().nth(i);
-            
-            println!("tasks current status and current row {:?}", tasks_current_status_and_current_row);
+        for tasks_by_status in &tasks_by_statuses {
+            let tasks_current_status_and_current_row = tasks_by_status.get(i);
 
             match tasks_current_status_and_current_row {
-                Some(t) => cells.push(Cell::new(format!("{} - {}", t.number, t.description).as_str())),
+                Some(t) => cells.push(Cell::new(
+                    textwrap::fill(format!("{} - {}", t.number, t.description).as_str(), 24)
+                        .as_str(),
+                )),
                 None => cells.push(Cell::new("")),
             };
         }
@@ -145,13 +155,15 @@ fn should_display_all_tasks() {
     assert_eq!(
         from_utf8(&result).unwrap(),
         "All tasks:
-+-----------------------------+----------------------+-------------------+
-| To Do                       | WIP                  | Done              |
-+-----------------------------+----------------------+-------------------+
-| 1 - Repair the garage door. | 4 - Write unit tests | 3 - Pay the bills |
-+-----------------------------+----------------------+-------------------+
-| 2 - Finish the Rust Book.   |                      | 5 - Read the doc  |
-+-----------------------------+----------------------+-------------------+
++-----------------------+----------------------+-------------------+
+| To Do                 | Work in Progress     | Done              |
++-----------------------+----------------------+-------------------+
+| 1 - Repair the garage | 4 - Write unit tests | 3 - Pay the bills |
+| door.                 |                      |                   |
++-----------------------+----------------------+-------------------+
+| 2 - Finish the Rust   |                      | 5 - Read the doc  |
+| Book.                 |                      |                   |
++-----------------------+----------------------+-------------------+
 "
     );
 }

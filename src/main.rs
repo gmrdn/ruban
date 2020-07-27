@@ -4,7 +4,6 @@ mod port_dataprovider;
 mod rendering;
 mod taskmanager;
 
-#[macro_use]
 extern crate prettytable;
 
 use crate::adapter_user_interface::Cli;

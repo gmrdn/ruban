@@ -4,8 +4,7 @@ use chrono::Utc;
 use serde::{Deserialize, Serialize};
 use std::io::Read;
 
-
-#[derive(Debug, Serialize, Deserialize, Default,)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Tasks {
     pub tasks: Vec<Task>,
 }
@@ -41,7 +40,6 @@ impl Tasks {
             Some(max) => task_index = max + 1,
             None => task_index = 1,
         };
-        println!("task number to use : {}", task_index);
         let mut task_to_add = task.clone();
         task_to_add.number = task_index;
         self.tasks.push(task_to_add);
@@ -70,13 +68,12 @@ impl Tasks {
         serde_json::to_writer_pretty(writer, &self).expect("Unable to write data to writer")
     }
 
-
     pub fn tasks_by_status(&self, status: Status) -> Vec<Task> {
         self.tasks
-        .iter()
-        .filter(|t| t.status == status)
-        .cloned()
-        .collect::<Vec<Task>>()
+            .iter()
+            .filter(|t| t.status == status)
+            .cloned()
+            .collect::<Vec<Task>>()
     }
 }
 
