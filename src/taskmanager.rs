@@ -31,7 +31,7 @@ impl Tasks {
     pub fn from(reader: impl Read) -> Tasks {
         match serde_json::from_reader(reader) {
             Ok(v) => v,
-            Err(_) => Tasks {tasks: vec![]}
+            Err(_) => Tasks { tasks: vec![] },
         }
     }
 
