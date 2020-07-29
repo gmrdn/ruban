@@ -29,8 +29,10 @@ impl<'s> IntoIterator for &'s Tasks {
 
 impl Tasks {
     pub fn from(reader: impl Read) -> Tasks {
-        serde_json::from_reader(reader)
-            .expect("Unable to serialize tasks from Json into struct Tasks")
+        match serde_json::from_reader(reader) {
+            Ok(v) => v,
+            Err(_) => Tasks {tasks: vec![]}
+        }
     }
 
     pub fn add(&mut self, task: &Task) {
