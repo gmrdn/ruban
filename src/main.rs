@@ -19,6 +19,7 @@ fn main() {
     let source = OpenOptions::new()
         .read(true)
         .write(true)
+        .create(true)
         .open("tasks.json")
         .expect("Unable to open file");
 
