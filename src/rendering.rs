@@ -64,8 +64,8 @@ pub fn render_all_tasks(
 
             match tasks_current_status_and_current_row {
                 Some(t) => cells.push(Cell::new(
-                    textwrap::fill(format!("{} - {}", t.number, t.description).as_str(), 24)
-                        .as_str(),
+                    format_single_task(t).as_str()
+                    ,
                 )),
                 None => cells.push(Cell::new("")),
             };
@@ -82,6 +82,10 @@ pub fn render_all_tasks(
         .print(&mut writer)
         .expect("Unable to write table in writer");
     Ok(())
+}
+
+fn format_single_task(task: &Task) -> String {
+    textwrap::fill(format!("{} - {}", task.number, task.description).as_str(), 24)
 }
 
 #[cfg(test)]
